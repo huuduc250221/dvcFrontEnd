@@ -1,0 +1,37 @@
+.logo {
+
+}
+.rightMenu{
+
+    min-width: 640px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navRow {
+    width: 100%;
+    box-shadow: 1px 1px 1px #4ecdc4;
+}
+
+.navCol {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+ul {
+    width: 100%;
+    border-bottom: none !important;
+}
+li {
+    border-bottom: none !important;
+}
+
+@media only screen and (max-width: 746px) {
+    .rightMenu {
+        min-width: unset;
+    }
+  }

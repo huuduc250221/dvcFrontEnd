@@ -1,0 +1,39 @@
+.homeBanner {
+    height: 50vh;
+    background:no-repeat bottom center;
+    background-size: cover;
+}
+
+.onHomeBanner {
+    height: 100%;
+    width: 30%;
+    background-color: rgba(30, 12, 20, .3);
+    float: right;
+
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.buttonBanner {
+    width: 70%;
+    margin: 10px auto;
+    
+}
+
+.clickBoxHome {
+    border: 1px solid blue;
+}
+
+.homeSuport {
+    background-color: rosybrown;
+    border-top: 5px solid black;
+}
+
+.supportBox {
+    margin: 2rem 0;
+    padding: 20px;
+    border: 1px solid black;
+}
