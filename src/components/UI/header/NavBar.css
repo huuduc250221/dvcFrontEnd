@@ -1,6 +1,4 @@
-.logo {
 
-}
 .rightMenu{
 
     min-width: 640px;
@@ -22,11 +20,11 @@ nav {
 }
 
 
-ul {
+nav ul {
     width: 100%;
     border-bottom: none !important;
 }
-li {
+nav li {
     border-bottom: none !important;
 }
 

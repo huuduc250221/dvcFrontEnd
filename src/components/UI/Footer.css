@@ -1,0 +1,20 @@
+footer {
+    color: white !important;
+    background-image: linear-gradient(to right top, #051937, #00364e, #005356, #3e6d57, #78845c);
+    padding: 3rem 0;
+    margin-top: 3rem;
+}
+
+.footerCol1 h2 {
+    color: white;
+}
+
+.footerCol2 > a {
+    display: block;
+    color: white;
+}
+
+.footerCol3 img {
+    max-width: 200px;
+    margin-bottom: 1rem;
+}

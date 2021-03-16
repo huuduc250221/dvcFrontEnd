@@ -1,5 +1,4 @@
 import { Menu, Button, Row, Col } from 'antd';
-import { MailOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 

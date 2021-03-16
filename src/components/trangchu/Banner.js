@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 import homeBackgound from '../../logo/home-backgound.jpeg'
 import ggDown from '../../logo/gg-dowload.svg'
 import appStoreDown from '../../logo/appStore-dowload.svg'
-import quobee from '../../logo/quobee.jpg'
 
 import './Banner.css'
+import AssistanceElement from './AssistanceElement'
 
 export default function Banner({ srcBackground }) {
 
@@ -24,13 +24,13 @@ export default function Banner({ srcBackground }) {
         </div>
 
         <div className='homeSearch' style={{paddingTop:'3rem'}}>
-            <h3>Tra cứu </h3>
+            <h2>Tra cứu </h2>
             <Row gutter={16}>
                 <Col span={12}>
                     <div className='clickBoxHome' style={{padding:'20px'}}>
                         <img src='https://play-lh.googleusercontent.com/mLvvgUXJVZeu-GbqWZfr8ug74V7d8Od9yU2AOvUUptiki9wIH-BJHataFTJI_J0TlQ' width='100px'/>
                         Tra cứu thông tin
-                        <Button style={{float:'right'}}>Tra cứu</Button>
+                        <Button type='primary' style={{float:'right'}}>Tra cứu</Button>
 
                     </div>
                 </Col>
@@ -40,14 +40,14 @@ export default function Banner({ srcBackground }) {
                         <img  src='https://play-lh.googleusercontent.com/mLvvgUXJVZeu-GbqWZfr8ug74V7d8Od9yU2AOvUUptiki9wIH-BJHataFTJI_J0TlQ' width='100px'/>
 
                         <span>Tra cứu thông tin</span>
-                        <Button style={{float:'right'}}>Tra cứu</Button>
+                        <Button type='primary' style={{float:'right'}}>Tra cứu</Button>
                     </div>
                 </Col>
             </Row>
 
         </div >
         <div className='homeDownload' style={{paddingTop:'3rem'}}>
-            <h3>Tải Ứng dụng Dịch vụ công thành phố Thủ Đức</h3>
+            <h2>Tải Ứng dụng Dịch vụ công thành phố Thủ Đức</h2>
             <Row style={{marginTop:'3rem'}} justify='center' gutter={16}>
             <Col span={6}>
                 <img src={ggDown} />
@@ -58,45 +58,8 @@ export default function Banner({ srcBackground }) {
             </Row>
         </div>
         <div style={{marginTop:'3rem'}}>
-            <h3>Liên Hệ và Hỗ Trợ</h3>
-            <Row justify='space-around'>
-                <Col xl={5} sm={10}>
-                    <div className='supportBox'>
-                        <img src={quobee} width='100%'/>
-                        <span>Hỗ trợ kĩ thuật</span>
-                        <a href='#' >Bấm vào đây</a>
-                    </div>
-                </Col>
-                <Col xl={5} sm={10}>
-                    <div className='supportBox'>
-                        <img src={quobee} width='100%'/>
-                        <span>Hỗ trợ kĩ thuật</span>
-                        <a href='#' >Bấm vào đây</a>
-                    </div>
-                </Col>
-                <Col xl={5} sm={10}>
-                    <div className='supportBox'>
-                        <img src={quobee} width='100%'/>
-                        <span>Hỗ trợ kĩ thuật</span>
-                        <a href='#' >Bấm vào đây</a>
-                    </div>
-                </Col>
-                <Col xl={5} sm={10}>
-                    <div className='supportBox'>
-                        <img src={quobee} width='100%'/>
-                        <span>Hỗ trợ kĩ thuật</span>
-                        <a href='#' >Bấm vào đây</a>
-                    </div>
-                </Col>
-                <Col xl={5} sm={10}>
-                    <div className='supportBox'>
-                        <img src={quobee} width='100%'/>
-                        <span>Hỗ trợ kĩ thuật</span>
-                        <a href='#' >Bấm vào đây</a>
-                    </div>
-                </Col>
-            </Row>
-
+           
+            <AssistanceElement />
         </div>
     </div>
 }

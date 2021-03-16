@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Form, Input, Select, Row, Col, Button } from 'antd'
+import AssistanceElement from '../trangchu/AssistanceElement';
 
 const layout = {
     labelCol: {
@@ -22,12 +23,18 @@ export default function Contact() {
 
     return (
         <div>
-            <h3>Danh sách hồ sơ</h3>
             <Row gutter={16}>
                 <Col xs={24} sm={8}>
                     <h2>Thông tin liên hệ</h2>
+                    <h4>Dịch vụ công TP Thủ Đức</h4>
+                    <p><span>Địa chỉ:</span> số nào đó, đườn nòa đó..</p>
+                    <p><span>Email:</span> số nào đó, đườn nòa đó..</p>
+                    <p><span>Số điện thoại hỗ trợ:</span> số nào đó, đườn nòa đó..</p>
+
                 </Col>
                 <Col xs={24} sm={16}>
+                    <h2>Liên Hệ, giải đáp thắc mắc</h2>
+
                     <Form
                         {...layout}
                         name="basic"
@@ -106,7 +113,7 @@ export default function Contact() {
                         </Form.Item>
 
                         <Form.Item >
-                            <Button type="primary" htmlType="submit">
+                            <Button style={{float:'right'}} type="primary" htmlType="submit">
                                 Xác nhận
                             </Button>
                         </Form.Item>
@@ -114,6 +121,7 @@ export default function Contact() {
                 </Col>
 
             </Row>
+            <AssistanceElement />
         </div>
     );
 };

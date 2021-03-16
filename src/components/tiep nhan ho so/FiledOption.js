@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react'
+import React, {  } from 'react'
 import { Button, Card, Form, Input, Select } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { useHistory, useLocation, useParams } from 'react-router'
 
-import { fetchData } from '../../redux/reducers/FetchDataReducer'
+
 
 export default function FiledOption() {
     const { id } = useParams()
     let dataaaaa = useSelector(state => state.loadData)
-    const dispatch = useDispatch()
     const history = useHistory()
     const location = useLocation()
 
@@ -21,10 +20,10 @@ export default function FiledOption() {
     // )
 
 
-    const { loading, data, err } = dataaaaa
+    const { data } = dataaaaa
 
     let specifyData = data.find(item => {
-        return item.id.$oid == id
+        return item.id.$oid === id
     })
     console.log(id)
     console.log(specifyData)
@@ -51,7 +50,7 @@ export default function FiledOption() {
                 onFinish={onFinishForm}
                 initialValues={{optionState:'offline'}}
                 >
-                <Form.Item name='adressOff' required='true'>
+                <Form.Item name='adressOff' rules={[{ required: true }]}>
                     <Select >
                         {selectOption}
                     </Select>
@@ -72,8 +71,8 @@ export default function FiledOption() {
                 initialValues={{optionState:'online'}}
                 
                 >
-                <Form.Item name='adressOn' required='true'>
-                    <Select>
+                <Form.Item name='adressOn' rules={[{ required: true }]}>
+                    <Select >
                         {selectOption}
                     </Select>
 

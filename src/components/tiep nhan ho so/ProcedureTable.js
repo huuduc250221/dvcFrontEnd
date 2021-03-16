@@ -3,10 +3,9 @@ import { connect } from 'react-redux'
 import { fetchData } from '../../redux/reducers/FetchDataReducer'
 
 
-import { Table, Form, Input, Button, TreeSelect, Select } from 'antd'
-import { Route, Switch, Link, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom'
+import { Table, Form,  Button, Select } from 'antd'
+import {  Link, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom'
 
-import FiledOption from './FiledOption'
 
 function ProcedureTable({ data, onChangeFilter }) {
   const tableName = 'tiepnhanhoso'

@@ -24,7 +24,13 @@
 }
 
 .clickBoxHome {
-    border: 1px solid blue;
+    border: none;
+    box-shadow: 2px 2px 3px rgba(10, 10, 10, .5);
+    
+}
+.clickBoxHome:hover {
+    box-shadow: 3px 3px 5px rgba(10, 10, 10, .5);
+
 }
 
 .homeSuport {
@@ -32,8 +38,3 @@
     border-top: 5px solid black;
 }
 
-.supportBox {
-    margin: 2rem 0;
-    padding: 20px;
-    border: 1px solid black;
-}
