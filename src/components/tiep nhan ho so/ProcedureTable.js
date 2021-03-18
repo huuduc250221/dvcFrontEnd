@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { connect } from 'react-redux'
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../redux/reducers/FetchDataReducer'
 
 
@@ -7,9 +7,16 @@ import { Table, Form,  Button, Select } from 'antd'
 import {  Link, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom'
 
 
-function ProcedureTable({ data, onChangeFilter }) {
+export default function ProcedureTable() {
+  const dispatch = useDispatch()
+  const data = useSelector(state => state.loadData)
   const tableName = 'tiepnhanhoso'
   console.log(data.data)
+
+  useEffect(() => {
+    dispatch(fetchData(pageState.tableName))
+  },[])
+
   const dataSource = data.data ? data.data.map((item, index) => ({
     key: index,
     rowNumber: item.rowNumber,
@@ -65,10 +72,10 @@ function ProcedureTable({ data, onChangeFilter }) {
 
   const history = useHistory()
 
-  useEffect(() => {
-    onChangeFilter(pageState.tableName)
-    console.log('useEffects')
-  }, [onChangeFilter])
+  // useEffect(() => {
+  //   onChangeFilter(pageState.tableName)
+  //   console.log('useEffects')
+  // }, [onChangeFilter])
 
   // if (pageState.params !== params) {
   //   setPageState({ ...pageState, params: params })
@@ -136,12 +143,12 @@ function ProcedureTable({ data, onChangeFilter }) {
 
 
 
-const mapStateToProps = state => ({
-  data: state.loadData
-})
+// const mapStateToProps = state => ({
+//   data: state.loadData
+// })
 
-const mapDispatchToProps = dispatch => ({
-  onChangeFilter: (arg) => dispatch(fetchData(arg))
-})
+// const mapDispatchToProps = dispatch => ({
+//   onChangeFilter: (arg) => dispatch(fetchData(arg))
+// })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProcedureTable)
+// export default connect(mapStateToProps, mapDispatchToProps)(ProcedureTable)

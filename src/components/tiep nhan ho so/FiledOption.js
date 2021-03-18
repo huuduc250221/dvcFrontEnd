@@ -1,37 +1,42 @@
-import React, {  } from 'react'
+import React, { useEffect } from 'react'
 import { Button, Card, Form, Input, Select } from 'antd'
-import {  useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useLocation, useParams } from 'react-router'
+import { fetchData } from '../../redux/reducers/FetchDataReducer'
 
 
 
 export default function FiledOption() {
+    const tableName = 'tiepnhanhoso'
     const { id } = useParams()
-    let dataaaaa = useSelector(state => state.loadData)
     const history = useHistory()
     const location = useLocation()
-
-    // useEffect(() =>{
-    //     if(!dataaaaa) {
-    //         dispatch(fetchData())
-    //     }
-    //     else return
-    // },[]
-    // )
+    const dispatch = useDispatch()
+    const { data } = useSelector(state => state.loadData)
+    let specifyData, selectOption
 
 
-    const { data } = dataaaaa
+    useEffect(() => {
+        if (!data[0]) {
+            dispatch(fetchData(tableName))
+            console.log('dispatch')
+        }
+        console.log('useEffect OnlineFiled')
+    }, [])
 
-    let specifyData = data.find(item => {
-        return item.id.$oid === id
-    })
-    console.log(id)
-    console.log(specifyData)
+    if (data[0]) {
+        specifyData = data.find(item => {
+            return item.id.$oid === id
+        })
+        selectOption = specifyData.office.map((item, index) => {
+            return <Select.Option key={index} value={item.adress}>{item.adress}</Select.Option>
+        })
+    }
 
 
-    const selectOption = specifyData.office.map((item, index) => {
-        return <Select.Option key={index} value={item.adress}>{item.adress}</Select.Option>
-    })
+
+
+
 
     function onFinishForm(value) {
         console.log(value)
@@ -48,8 +53,8 @@ export default function FiledOption() {
             <p>Người dân đến bộ phận tiếp nhận và trả kết quả của đơn vị ban hành dịch vụ công để nộp hồ sơ và nhận kết quả.Bạn hãy chọn đơn vị tiếp nhận hồ sơ dưới đây để nộp hồ sơ.</p>
             <Form
                 onFinish={onFinishForm}
-                initialValues={{optionState:'offline'}}
-                >
+                initialValues={{ optionState: 'offline' }}
+            >
                 <Form.Item name='adressOff' rules={[{ required: true }]}>
                     <Select >
                         {selectOption}
@@ -57,20 +62,20 @@ export default function FiledOption() {
 
                 </Form.Item>
                 <Form.Item name='optionState' hidden='true' >
-                   <Input />
+                    <Input />
                 </Form.Item>
                 <Form.Item  >
                     <Button type='primary' htmlType='submit' >Chọn</Button>
                 </Form.Item>
             </Form>
         </Card>
-        {specifyData.online ? <Card title='Dịch vụ nộp hồ sơ qua mạng'>
+        {data[0] ? specifyData.online ? <Card title='Dịch vụ nộp hồ sơ qua mạng'>
             <p>Người dân nộp hồ sơ thông qua trang dịch vụ công và đến bộ phận tiếp nhận và trả kết quả của đơn vị ban hành dịch vụ công nhận kết quả.Bạn hãy chọn đơn vị tiếp nhận hồ sơ dưới đây để nộp hồ sơ.</p>
             <Form
                 onFinish={onFinishForm}
-                initialValues={{optionState:'online'}}
-                
-                >
+                initialValues={{ optionState: 'online' }}
+
+            >
                 <Form.Item name='adressOn' rules={[{ required: true }]}>
                     <Select >
                         {selectOption}
@@ -78,13 +83,13 @@ export default function FiledOption() {
 
                 </Form.Item>
                 <Form.Item name='optionState' hidden='true'>
-                    <Input  />
+                    <Input />
                 </Form.Item>
                 <Form.Item  >
                     <Button type='primary' htmlType='submit'>Chọn</Button>
                 </Form.Item>
             </Form>
-        </Card> : ''}
+        </Card> : '' :''}
 
     </div>
 }
