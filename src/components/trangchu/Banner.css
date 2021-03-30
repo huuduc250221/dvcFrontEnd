@@ -24,13 +24,24 @@
 }
 
 .clickBoxHome {
-    border: none;
-    box-shadow: 2px 2px 3px rgba(10, 10, 10, .5);
-    
+    border: 1px solid #bfd5de;
+    transition: all .3s ease-in-out;
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
 }
-.clickBoxHome:hover {
-    box-shadow: 3px 3px 5px rgba(10, 10, 10, .5);
 
+.clickBoxHome > img {
+    margin-right: 1rem;
+}
+.clickBoxHome > button {
+    align-items: flex-end;
+    margin-left: auto;
+}
+
+.clickBoxHome:hover {
+    border-color: #16a085;
+    transform: translateY(-5px);
 }
 
 .homeSuport {

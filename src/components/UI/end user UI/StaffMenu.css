@@ -1,0 +1,18 @@
+.admin-main {
+    display: flex;
+    min-height: 70vh;
+    position: relative;
+}
+
+.admin-main-menu {
+
+    height: 100%;
+
+}
+.admin-main-menu > ul {
+    height: 100%;
+}
+
+.admin-main-content {
+    width: 100%;
+}

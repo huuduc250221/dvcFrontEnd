@@ -1,18 +1,18 @@
 import React from 'react'
-import { Col, Layout, Row } from 'antd'
+import { Col, Row } from 'antd'
 import NavBar from './NavBar'
+import './PageHeader.css'
 
-const { Header } = Layout
 
 
 export default function PageHeader() {
 
     return <>
-        <header>
+        <header >
             <Row >
                 <Col span={16} offset={4} style={{textAlign:'right'}}>
-                    Giải đáp thông tin về chuyên môn:0966331010
-                    Hỗ trợ kỹ thuật:1900.2267</Col>
+                    Giải đáp thông tin về chuyên môn:<a href='tel:0966331010' className='header-phone'>0966331010</a>
+                    &nbsp; Hỗ trợ kỹ thuật: <a href='tel:0966331010' className='header-phone'>0966331010</a></Col>
             </Row>
 
 

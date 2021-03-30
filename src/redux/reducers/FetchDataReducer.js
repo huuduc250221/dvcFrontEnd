@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'query-string'
 
-import {FETCH_FAILURE,FETCH_REQUEST,FETCH_SUCCESS} from './Action.type'
+import {FETCH_FAILURE,FETCH_REQUEST,FETCH_SUCCESS} from '../constant/Action.type'
 
 const initState = {
     loading:false,

@@ -9,7 +9,7 @@ import './Footer.css'
 
 export default function PageFooter() {
     return <footer >
-        <Row gutter={16}>
+        <Row >
             <Col span={16} offset={4}>
                 <Row gutter={16}>
                     <Col xl={8} md={12} xs={24}>
@@ -23,9 +23,9 @@ export default function PageFooter() {
                     </Col>
                     <Col xl={8} md={12} xs={24}>
                         <div className='footerCol2'>
-                            <Link>Điều khoản</Link>
-                            <Link>Chính sách</Link>
-                            <Link>Quy định và bảo mật</Link>
+                            <Link to='/dieukhoan'>Điều khoản</Link>
+                            <Link to='/chinhsach'>Chính sách</Link>
+                            <Link to='/quydinhvabaomat'>Quy định và bảo mật</Link>
                         </div>
                     </Col>
                     <Col xl={8} md={12} xs={24}>

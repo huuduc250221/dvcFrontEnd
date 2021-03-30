@@ -4,29 +4,60 @@ import PageHeader from './components/UI/header/PageHeader'
 import PageFooter from './components/UI/Footer'
 import RootRouter from './screens/RootRouter'
 
-import { BrowserRouter as Router } from 'react-router-dom'
-import {Row, Col } from 'antd'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Row, Col } from 'antd'
 
 import 'antd/dist/antd.css';
 import './App.css';
+import BackToTop from './components/BackToTop'
+import StaffMenu from './components/UI/end user UI/StaffMenu'
+import ManagerMenu from './components/UI/end user UI/ManagerUi'
+import RootAdminPageRoute from './screens/RootStaffRoute'
+
+import ProtectedRoute from './components/protected route/ProtectedRoute'
+import RootManagerRoute from './screens/RootManagerRoute'
+
 
 
 function App() {
   return (
-      <Router >
+    <Router >
+      <Switch>
+        <ProtectedRoute path='/staffHome'>
+          <StaffMenu >
+            <RootAdminPageRoute />
+          </StaffMenu>
+          <PageFooter />
+        </ProtectedRoute>
+        <ProtectedRoute path='/managerHome'>
+          <ManagerMenu >
+            <RootManagerRoute />
+          </ManagerMenu>
+          <PageFooter />
+        </ProtectedRoute>
 
-        <PageHeader />
-        <main>
-          <Row>
-            <Col span={16} offset={4}>
-            <RootRouter />
-            </Col>
-          </Row>
-          
-        </main>
-        <PageFooter />
+        <Route path='/'>
+          <PageHeader />
+          <main>
+            <Row>
+              <Col span={16} offset={4}>
+                <RootRouter />
+              </Col>
+            </Row>
+            <BackToTop />
+          </main>
+          <PageFooter />
 
-      </Router>
+        </Route>
+
+
+
+      </Switch>
+
+
+
+
+    </Router>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchData } from '../../redux/reducers/FetchDataReducer'
+
 
 
 import { Table, Form,  Button, Select, Input } from 'antd'
@@ -8,14 +8,7 @@ import {  Link, useHistory, useLocation, useParams, useRouteMatch } from 'react-
 
 
 export default function ProcedureTable() {
-  const dispatch = useDispatch()
-  const data = useSelector(state => state.loadData)
-  const tableName = 'tiepnhanhoso'
-  console.log(data.data)
 
-  useEffect(() => {
-    dispatch(fetchData(pageState.tableName))
-  },[])
 
   const dataSource = data.data ? data.data.map((item, index) => ({
     key: index,
@@ -36,7 +29,7 @@ export default function ProcedureTable() {
       dataIndex: 'rowNumber',
       key: 'rowNumber'
     }, {
-      title: 'Tên thủ tục',
+      title: 'Tên nhân viên',
       dataIndex: 'title',
       key: 'title',
       render: (item) => {
@@ -44,9 +37,16 @@ export default function ProcedureTable() {
       }
     },
     {
-      title: 'Mức độ',
+      title: 'Email',
       dataIndex: 'level',
       key: 'level'
+    },
+    {
+        title:'Chức năng',
+        render :<div>
+            <Button>Sửa</Button>
+            <Button>Xóa</Button>
+        </div>
     }
 
   ]
@@ -107,10 +107,10 @@ export default function ProcedureTable() {
       onFinish={onFinish}
     >
       <Form.Item name='search'>
-        <Input placeholder='Tên thủ tục'/>
+        <Input placeholder='Tên nhân viên'/>
       </Form.Item>
       <Form.Item name='params' >
-        <Select >
+        <Select placeholder='phòng ban'>
           <Select.Option value='todos'>todos</Select.Option>
           <Select.Option value='posts'>posts</Select.Option>
           <Select.Option value='albums'>albums</Select.Option>
@@ -126,7 +126,7 @@ export default function ProcedureTable() {
     <Table
       loading={false}
       columns={columns}
-      dataSource={dataSource}
+    //   dataSource={dataSource}
       pagination={{ total: data.total, onChange: onPageChange }}
     />
 

@@ -1,0 +1,9 @@
+header {
+    color: whitesmoke;
+}
+.header-phone {
+    color: white;
+}
+.header-phone:hover {
+    color: black;
+}

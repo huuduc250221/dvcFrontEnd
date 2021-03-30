@@ -3,19 +3,28 @@
 }
 
 .supportBox {
-    box-shadow: 2px 2px 3px rgba(10, 10, 10, .5);
-    border-radius: 10px;
-    border: none;
+    border-radius: .25rem;
     padding-bottom: 1rem;
-
+    padding-top: 1rem;
+    border: 1px solid #e3e6f0;
+    border-top-width: .25rem;
+    transition: all .3s ease-in-out;
 }
 
+
 .supportBox:hover {
-    box-shadow: 3px 3px 5px rgba(10, 10, 10, .5);
+    border-color: #16a085;
 }
 
 .supportBox > * {
     display: block;
     text-align: center;
     padding: 5px 0;
+}
+
+.svg-logo {
+    max-width: 100px;
+    width: 40%;
+    margin: 2rem auto;
+    filter: invert(.5) sepia(1) saturate(5) hue-rotate(180deg) ;
 }
