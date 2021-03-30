@@ -2,14 +2,13 @@ import { Button } from 'antd';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import {logOutAction} from '../../redux/reducers/LoginReducer'
+import {logoutActionMDW} from '../../redux/reducers/LoginReducer'
 
 const LogOut = () => {
     const dispatch = useDispatch()
 
     function handleLogOut(e) {
-        localStorage.removeItem('loggin')
-        dispatch(logOutAction)
+        dispatch(logoutActionMDW())
         
     }
     return (

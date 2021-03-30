@@ -22,7 +22,7 @@ const loginActionFailure = err => {
     }
 }
 
-const logOutAction = {
+export const logOutAction = {
     type: LOGOUT_ACTION
 }
 
@@ -33,11 +33,14 @@ export  const loginRequest = user => async dispatch => {
             .catch( err => dispatch(loginActionFailure(err.message)))
 }
 export const logoutActionMDW = () => dispatch => {
-    axios.get('/api/v1/auth/logout')
+    axios.post('/api/v1/auth/logout')
         .then(res => dispatch(logOutAction))
+        .then(res => console.log(res))
+        
 }
 
  const loginReducer = (state = initialState,action) =>  {
+
     switch(action.type) {
         case LOGIN_REQUEST :
             return {
