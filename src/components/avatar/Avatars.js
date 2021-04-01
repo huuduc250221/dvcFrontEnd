@@ -4,15 +4,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom';
 import LogOut from '../logout/LogOut';
-import Cookie from 'js-cookie'
+
 import { fetchUser } from '../../redux/reducers/FetchUserReducer';
 
 const Avatars = () => {
-    const { user, fetchSuccess } = useSelector(state => state.users)
+    const { profile, fetchSuccess } = useSelector(state => state.users)
     const dispatch = useDispatch()
 
+    if(!profile.avatar) {
+        profile.avatar=''
+    }
+
     useEffect(() => {
-        if(Cookie.get('token') && !fetchSuccess) {
+        if(!fetchSuccess) {
             dispatch(fetchUser())
         }
     },[])
@@ -34,7 +38,7 @@ const Avatars = () => {
                 <div>
                     <Link to='/profilePage'>
                         {
-                            fetchSuccess ? <Avatar src={user.avatar} size={32} /> : <Avatar size={32} icon={<UserOutlined />} />
+                            fetchSuccess ? <Avatar src={profile.avatar} size={32} /> : <Avatar size={32} icon={<UserOutlined />} />
                         }
                     </Link>
                 </div>

@@ -12,7 +12,7 @@ import './App.css';
 import BackToTop from './components/BackToTop'
 import StaffMenu from './components/UI/end user UI/StaffMenu'
 import ManagerMenu from './components/UI/end user UI/ManagerUi'
-import RootAdminPageRoute from './screens/RootStaffRoute'
+import RootStaffRoute from './screens/RootStaffRoute'
 
 import ProtectedRoute from './components/protected route/ProtectedRoute'
 import RootManagerRoute from './screens/RootManagerRoute'
@@ -24,8 +24,10 @@ function App() {
     <Router >
       <Switch>
         <ProtectedRoute path='/staffHome'>
+          <PageHeader />
+
           <StaffMenu >
-            <RootAdminPageRoute />
+            <RootStaffRoute />
           </StaffMenu>
           <PageFooter />
         </ProtectedRoute>

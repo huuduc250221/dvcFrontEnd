@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input, Checkbox, Button, Modal } from 'antd'
+import { Form, Input, Checkbox, Button, Modal, Alert, Row, Col, Space } from 'antd'
 
 import { loginRequest } from '../../redux/reducers/LoginReducer'
 import { useHistory } from 'react-router';
 import RegisterPage from '../register Page/RegisterPage';
 
+import './LoginPage.css'
 
 const layout = {
     labelCol: { span: 8 },
@@ -18,12 +19,11 @@ const tailLayout = {
 };
 
 function LoginPage(props) {
-    // const [success, setSuccess] = useState(false)
     const history = useHistory()
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const { success } = useSelector(state => state.user)
+    const { success, err } = useSelector(state => state.user)
     const dispatch = useDispatch()
-
+    console.log(success)
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -36,7 +36,7 @@ function LoginPage(props) {
     const onFinish = (values) => {
         dispatch(loginRequest(values))
     };
-    console.log(success)
+
     if (success) {
         history.push('/')
     }
@@ -55,33 +55,39 @@ function LoginPage(props) {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
             >
-                <Form.Item
-                    label="Tên đăng nhập"
-                    name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
-                >
-                    <Input />
-                </Form.Item>
+                    <Row >
+                        <Col span={16} offset={8}>
+                            {err ? <Alert className='alert-login' message='sai thông tin' type='error' /> : ''}
+                        </Col>
+                    </Row>
 
-                <Form.Item
-                    label="Mật khẩu"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
+                    <Form.Item
+                        label="Tên đăng nhập"
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
 
-                <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-                    <Checkbox>Remember me</Checkbox>
-                </Form.Item>
+                    <Form.Item
+                        label="Mật khẩu"
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
 
-                <Form.Item {...tailLayout}>
-                    <Button type="primary" htmlType="submit">
-                        Đăng nhập
+                    <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+                        <Checkbox>Remember me</Checkbox>
+                    </Form.Item>
+
+                    <Form.Item {...tailLayout}>
+                        <Button type="primary" htmlType="submit">
+                            Đăng nhập
                     </Button>
 
-                    <Button style={{ marginLeft: '2rem' }} onClick={showModal}>Đăng ký</Button >
-                </Form.Item>
+                        <Button style={{ marginLeft: '2rem' }} onClick={showModal}>Đăng ký</Button >
+                    </Form.Item>
             </Form>
 
             <Modal title='Đăng kí' visible={isModalVisible} footer={null} onCancel={handleCancel} >

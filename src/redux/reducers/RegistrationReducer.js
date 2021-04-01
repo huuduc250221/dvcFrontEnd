@@ -5,45 +5,47 @@ import { REGISTRATION_FAILURE, REGISTRATION_SUCCESS, REGISTRATION_REQUEST } from
 const initialState = {
     loading: false,
     success: false,
-    err : '',
+    err: '',
 }
 
 const registrationRequest = {
     type: REGISTRATION_REQUEST
 }
-const registrationSuccess = {
-    type:REGISTRATION_SUCCESS ,
-    payload: false,
-}
+const registrationSuccess = data => ({
+    type: REGISTRATION_SUCCESS,
+    payload: data,
+})
 const registrationFailure = err => ({
-    type:REGISTRATION_FAILURE,
-    payload:err
+    type: REGISTRATION_FAILURE,
+    payload: err
 })
 
-export const registrationMDW = profile => async dispatch => {
-    dispatch(registrationRequest)
+export const registrationMDW = profile => dispatch => {
+    // dispatch(registrationRequest)
     console.log(profile)
-    await axios.post('/api/v1/auth/register',profile)
-            .then(dispatch(registrationSuccess))
-            .catch(err => dispatch(err.message))
+    axios.post('/api/v1/auth/register', profile)
+        .then(res => dispatch(registrationSuccess(res.data)))
+        .catch(err => dispatch(registrationFailure(err)))
 }
 
-const registrationReducer = (state = initialState,action) => {
-    switch(action.type) {
-        case REGISTRATION_REQUEST :
-            return {...state,
-            loading:true}
-        case REGISTRATION_SUCCESS :
+const registrationReducer = (state = initialState, action) => {
+    switch (action.type) {
+        case REGISTRATION_REQUEST:
             return {
                 ...state,
-                success:true,
+                loading: true
+            }
+        case REGISTRATION_SUCCESS:
+            return {
+                ...state,
+                success: action.payload.data.success,
             }
         case REGISTRATION_FAILURE:
             return {
                 ...state,
-                err:action.payload
+                err: 'error'
             }
-        default : return state
+        default: return state
     }
 }
 

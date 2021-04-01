@@ -1,73 +1,50 @@
 import React, { useState } from 'react';
 import { Alert, Button, DatePicker, Form, Input, Radio } from 'antd';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-import { registrationMDW } from '../../redux/reducers/RegistrationReducer'
-
+import moment from 'moment'
+import { updateUserAction } from '../../../redux/reducers/FetchUserReducer';
 
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 }
 }
-
-function RegisterPage(props) {
+const ChangeProfile = () => {
+    const [isShow,setIsShow] = useState(false)
     const dispatch = useDispatch()
-    const { loading, success } = useSelector(state => state.registration)
-
-
-
-
-    function handleFinish(values) {
-        const user = {
-            ...values,
-            day_of_birth: values.day_of_birth.toJSON(values.day_of_birth._d)
-        }
-        dispatch(registrationMDW(user))
-        console.log(success)
+    const { profile, updateSuccess, updateErr } = useSelector(state => state.users)
+    console.log(profile)
+    const handleFinish = (value) => {
+        value.id = profile._id
+        console.log(value)
+        dispatch(updateUserAction(value))
+        setIsShow(true)
+        setTimeout(()=> {
+            setIsShow(false)
+        },5000)
     }
-    // function registrationSuccess() {
-    //     if (success) {
-    //         setTimeout(() => {
-    //             props.handleSuccessToClose()
-    //         }, 1000)
-
-    //     }
-
-    // }
-
-    // registrationSuccess()
+    const obj = {
+        ...profile,
+        day_of_birth: moment(profile.day_of_birth)
+    }
 
     return (
         <div>
             <Form
                 {...layout}
-                initialValues={{ position: 'Chủ Tịch' }}
+                initialValues={obj}
                 onFinish={handleFinish}
             >
-                {success ? <Alert message='Đăng kí thành công' type='success' /> : ''}
+                {isShow && updateSuccess ? <Alert message='Thay đỗi thông tin thành công' type='success' /> :isShow && !updateErr ?
+                    <Alert message='Thay đỗi thông tin không thành công' type='error' /> : ''}
                 <Form.Item
                     label="Tên đăng nhập"
                     name="username"
                     rules={[{ required: true, message: 'Vui lòng nhập tên đăng nhập!' }]}
+
                 >
-                    <Input />
+                    <Input disabled />
                 </Form.Item>
 
-                <Form.Item
-                    label="Mật khẩu"
-                    name="password"
-                    rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
-                {/* <Form.Item
-                    label="Nhập lại mật khẩu"
-                    name="rePassword"
-                    rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
-                >
-                    <Input.Password />
-                </Form.Item> */}
                 <Form.Item
                     label="Họ và tên"
                     name="full_name"
@@ -120,18 +97,18 @@ function RegisterPage(props) {
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                     name="position"
                     hidden
                 >
                     <Input />
-                </Form.Item>
+                </Form.Item> */}
                 <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button htmlType='submit' type='primary'>Đăng ký</Button>
+                    <Button htmlType='submit' type='primary'>Hoàn tất</Button>
                 </Form.Item>
             </Form>
         </div>
     );
-}
+};
 
-export default RegisterPage;
+export default ChangeProfile;

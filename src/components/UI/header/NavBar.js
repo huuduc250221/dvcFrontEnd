@@ -8,31 +8,48 @@ import Avatars from '../../avatar/Avatars';
 import './NavBar.css'
 import { fetchUser } from '../../../redux/reducers/FetchUserReducer';
 import Cookies from 'js-cookie';
+import { loginAuthenticated } from '../../../redux/reducers/LoginReducer';
 
 
 
 export default function NavBar() {
-    
-    const { success } = useSelector(state => state.user)
-
     const [current, setCurrentSelect] = useState('Mail')
-
-    const {fetchSuccess} = useSelector(state => state.users)
+    
+    const {success} = useSelector(state => state.user)
+    let isAuth=localStorage.getItem('isLogin')||false
     const dispatch = useDispatch()
-    useEffect(()=> {
-        // console.log(Cookies.get())
-        // console.log(Cookies.get('token'))
-        // if(Cookies.get('token')) {
-        //     console.log('get cookie')
-        // }
-        // if(Cookies.get('token')&&!success) {
-        //     console.log('dispatch users')
-        //     dispatch(fetchUser())
-        // }
-        if(!fetchSuccess) {
-            dispatch(fetchUser())
+
+    useEffect(() => {
+        if(isAuth) {
+            dispatch(loginAuthenticated)
         }
     },[])
+    // const {fetchSuccess} = useSelector(state => state.users)
+
+    // const [isLogin,setIsLogin] = useState(isAuth)
+    // console.log(isAuth)
+    
+    // useEffect(()=> {
+    //     setIsLogin(localStorage.getItem('isLogin'))
+    //     console.log('useEffect')
+    // })
+
+    // console.log(isLogin)
+    // useEffect(()=> {
+    //     // console.log(Cookies.get())
+    //     // console.log(Cookies.get('token'))
+    //     // if(Cookies.get('token')) {
+    //     //     console.log('get cookie')
+    //     // }
+    //     // if(Cookies.get('token')&&!success) {
+    //     //     console.log('dispatch users')
+    //     //     dispatch(fetchUser())
+    //     // }
+    //     if(!fetchSuccess) {
+    //         dispatch(fetchUser())
+    //         console.log('useEffect')
+    //     }
+    // },[])
     const handleClick = e => {
         console.log('click ', e);
         setCurrentSelect(e.key)
@@ -59,7 +76,7 @@ export default function NavBar() {
                                 <Link to='/lienhe'>LIÊN HỆ</Link>
                             </Menu.Item>
                             <Menu.Item key='avatar' >
-                                {success||fetchSuccess ? <Avatars /> : <Button type='primary' shape='round'><Link to='/login'>Login</Link></Button>}
+                                {success ? <Avatars /> : <Button type='primary' shape='round'><Link to='/login'>Login</Link></Button>}
 
                             </Menu.Item>
                         </Menu>

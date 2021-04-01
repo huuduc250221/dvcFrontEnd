@@ -1,6 +1,7 @@
 import { Col, Row, Tabs } from 'antd';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import ChangeProfile from './option/ChangeProfile';
 import Procedures from './option/Procedures';
 import ProfilePage from './option/ProfilePage'
 
@@ -16,15 +17,15 @@ const PersonalPage = () => {
         <div>
             <Row>
                 <Tabs defaultActiveKey="1" tabPosition='left'>
-                    <TabPane tab="Tab 1" key="1">
+                    <TabPane tab="Thông tin cá nhân" key="1">
                         <ProfilePage />
                     </TabPane>
-                    <TabPane tab="Tab 2" key="2">
+                    <TabPane tab="Các thủ tục của tôi" key="2">
                         <Procedures />
 
                     </TabPane>
-                    <TabPane tab="Tab 3" key="3">
-                        Content of Tab Pane 3
+                    <TabPane tab="Chỉnh sửa thông tin" key="3">
+                        <ChangeProfile />
                     </TabPane>
                 </Tabs>
             </Row>

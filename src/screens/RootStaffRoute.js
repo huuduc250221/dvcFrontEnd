@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router';
 
 import StaffHome from '../components/end user/staff/StaffHome'
 
-function RootAdminPageRoute(props) {
+function RootStaffRoute(props) {
     return (
         <div>
             <Switch>
@@ -15,4 +15,4 @@ function RootAdminPageRoute(props) {
     );
 }
 
-export default RootAdminPageRoute;
+export default RootStaffRoute;

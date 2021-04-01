@@ -35,7 +35,9 @@ export default function Banner({ srcBackground }) {
                             <h3>Tra cứu các thủ tục</h3>
 
                         </div>
-                        <Button type='primary' >Tra cứu</Button>
+                        <Button type='primary' >
+                            <Link to='/tiepnhanhoso'>Tra cứu</Link>
+                        </Button>
 
                     </div>
                 </Col>
@@ -46,7 +48,10 @@ export default function Banner({ srcBackground }) {
                         <div className='content'>
                             <h3>Tra cứu hồ sơ</h3>
                         </div>
-                        <Button type='primary' >Tra cứu</Button>
+                        <Button type='primary' >
+                            <Link to='/tracuuhoso'>Tra cứu</Link>
+
+                        </Button>
                     </div>
                 </Col>
             </Row>
@@ -56,10 +61,10 @@ export default function Banner({ srcBackground }) {
             <h2>Tải Ứng dụng Dịch vụ công thành phố Thủ Đức</h2>
             <Row style={{ marginTop: '3rem' }} justify='center' gutter={16}>
                 <Col span={6}>
-                    <img src={ggDown} alt='tải từ playStore'/>
+                    <img src={ggDown} alt='tải từ playStore' />
                 </Col>
                 <Col span={6}>
-                    <img src={appStoreDown} alt='tải từ appStore'/>
+                    <img src={appStoreDown} alt='tải từ appStore' />
                 </Col>
             </Row>
         </div>

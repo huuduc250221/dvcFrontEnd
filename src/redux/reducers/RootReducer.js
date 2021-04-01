@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux'
 
 import {loadDataReducer} from './FetchDataReducer'
+import fetchRecordReducer from './FetchRecord'
 import usersReducer from './FetchUserReducer'
 import loginReducer from './LoginReducer'
 import registrationReducer from './RegistrationReducer'
@@ -11,4 +12,5 @@ import registrationReducer from './RegistrationReducer'
     user: loginReducer,
     users: usersReducer,
     registration:registrationReducer,
+    records: fetchRecordReducer,
 })
