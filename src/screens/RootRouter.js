@@ -36,7 +36,7 @@ export default function RootRouter() {
             </Route>
 
 
-            <ProtectedRoute path='/profilePage'>
+            <ProtectedRoute  path='/profilePage'>
                 <PersonalPage />
             </ProtectedRoute>
 

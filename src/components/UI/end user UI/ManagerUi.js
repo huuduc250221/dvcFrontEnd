@@ -25,11 +25,11 @@ function AdminMenu(props) {
   }
 
   return (<div>
-    <nav>
+    {/* <nav>
       <Button type="primary" onClick={toggleCollapsed} >
         {React.createElement(collapsedState ? MenuUnfoldOutlined : MenuFoldOutlined)}
       </Button>
-    </nav>
+    </nav> */}
     <div className='admin-main'>
       <div className='admin-main-menu' >
 
@@ -48,7 +48,7 @@ function AdminMenu(props) {
           </Menu.Item>
           <SubMenu key="sub1" icon={<MailOutlined />} title="Quản lý nhân viên">
             <Menu.Item key="5">
-              <Link to='/managerHome/nhanvien'>Tổng quan</Link>
+              <Link to='/managerHome/quanlynhanvien'>Tổng quan</Link>
             </Menu.Item>
             <Menu.Item key="6">
               <Link to='/managerHome/taonhanvien'>Thêm mới nhân viên</Link>
@@ -65,13 +65,13 @@ function AdminMenu(props) {
           </SubMenu>
           <SubMenu key="sub3" icon={<AppstoreOutlined />} title="Cá nhân">
             <Menu.Item key="13">
-              <Link to='/personalpage'>Thông tin của tôi</Link>
+              <Link to='/profilePage'>Thông tin của tôi</Link>
             </Menu.Item>
             <Menu.Item key="14">Đăng xuất</Menu.Item>
           </SubMenu>
         </Menu>
       </div>
-      <div className='admin-main-content' style={{ border: '1px solid black' }}>
+      <div className='admin-main-content' style={{ padding:'2rem' }}>
         {props.children}
       </div >
     </div>

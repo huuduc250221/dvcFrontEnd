@@ -51,10 +51,11 @@ const CreateEmployee = () => {
                 >
                     <Input.Password />
                 </Form.Item>
-                <Form.Item name='role' rules={{ required: true }}>
+                <Form.Item name='role' label='Chọn chức vụ' required>
                     <Select
                         placeholder="Chọn một chức vụ"
                         allowClear
+                        required
                     >
                         <Select.Option value="1">Trưởng phòng</Select.Option>
                         <Select.Option value="2">Nhân viên</Select.Option>
@@ -64,7 +65,7 @@ const CreateEmployee = () => {
 
                 <Form.Item {...tailLayout}>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Tạo
                     </Button>
                 </Form.Item>
             </Form>

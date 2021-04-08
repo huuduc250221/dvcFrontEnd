@@ -1,55 +1,34 @@
 import { Menu, Button, Row, Col } from 'antd';
-import { useDebugValue, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 // import Cookies from 'js-cookie'
 import cityLogo from '../../../logo/city-logo.jpg'
 import Avatars from '../../avatar/Avatars';
+
 import './NavBar.css'
-import { fetchUser } from '../../../redux/reducers/FetchUserReducer';
-import Cookies from 'js-cookie';
-import { loginAuthenticated } from '../../../redux/reducers/LoginReducer';
+
+// import { loginAuthenticated } from '../../../redux/reducers/LoginReducer';
+import useAuth from '../../../hooks/useAuth';
+import NotificationBell from '../../notification/NotificationBell';
 
 
 
 export default function NavBar() {
     const [current, setCurrentSelect] = useState('Mail')
-    
-    const {success} = useSelector(state => state.user)
-    let isAuth=localStorage.getItem('isLogin')||false
-    const dispatch = useDispatch()
+    const success = useAuth()
+    console.log(success)
+    // const {success} = useSelector(state => state.user)
+    // let isAuth=localStorage.getItem('isLogin')||false
+    // const dispatch = useDispatch()
 
-    useEffect(() => {
-        if(isAuth) {
-            dispatch(loginAuthenticated)
-        }
-    },[])
-    // const {fetchSuccess} = useSelector(state => state.users)
-
-    // const [isLogin,setIsLogin] = useState(isAuth)
-    // console.log(isAuth)
-    
-    // useEffect(()=> {
-    //     setIsLogin(localStorage.getItem('isLogin'))
-    //     console.log('useEffect')
-    // })
-
-    // console.log(isLogin)
-    // useEffect(()=> {
-    //     // console.log(Cookies.get())
-    //     // console.log(Cookies.get('token'))
-    //     // if(Cookies.get('token')) {
-    //     //     console.log('get cookie')
-    //     // }
-    //     // if(Cookies.get('token')&&!success) {
-    //     //     console.log('dispatch users')
-    //     //     dispatch(fetchUser())
-    //     // }
-    //     if(!fetchSuccess) {
-    //         dispatch(fetchUser())
-    //         console.log('useEffect')
+    // useEffect(() => {
+    //     if(isAuth) {
+    //         dispatch(loginAuthenticated)
     //     }
     // },[])
+
+
     const handleClick = e => {
         console.log('click ', e);
         setCurrentSelect(e.key)
@@ -75,6 +54,9 @@ export default function NavBar() {
                             <Menu.Item key="contact">
                                 <Link to='/lienhe'>LIÊN HỆ</Link>
                             </Menu.Item>
+                            <>
+                              {success?<NotificationBell />:<></>}  
+                            </>
                             <Menu.Item key='avatar' >
                                 {success ? <Avatars /> : <Button type='primary' shape='round'><Link to='/login'>Login</Link></Button>}
 
@@ -85,9 +67,5 @@ export default function NavBar() {
 
             </Col>
         </Row>
-
-
-
-
     );
 }

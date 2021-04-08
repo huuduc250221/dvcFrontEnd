@@ -1,0 +1,26 @@
+.layout-chart {
+    border-radius: .25rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    border: 1px solid #e3e6f0;
+    border-top-width: .25rem;
+    transition: all .3s ease-in-out;
+    padding: 8px;
+    margin: 1rem .5rem;
+}
+
+.layout-chart:hover {
+    border-color: #16a085;
+}
+
+.layout-chart:hover hr {
+    border-color: #16a085;
+}
+
+
+.layout-chart hr {
+    border-top: 1px solid #e3e6f0 ;
+    border-bottom: none;
+    transition: all .3s ease-in-out;
+    margin: 0 -9px;
+}

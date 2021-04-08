@@ -1,3 +1,16 @@
 .alert-login {
     margin-bottom: 2rem;
 }
+
+.login-form {
+    max-width: 400px;
+    margin: auto;
+    background-color: #e8e8e8    ;
+    padding: 1rem;
+}
+.login-form input ,.login-form .ant-input-password{
+    border-radius: 20px !important;
+}
+.login-form button {
+    border-radius: 1rem;
+}

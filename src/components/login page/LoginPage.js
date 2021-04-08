@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input, Checkbox, Button, Modal, Alert, Row, Col, Space } from 'antd'
+import { Form, Input, Checkbox, Button, Modal, Alert, Row, Col, Space, message } from 'antd'
 
-import { loginRequest } from '../../redux/reducers/LoginReducer'
+import { loginActionMDW } from '../../redux/reducers/LoginReducer'
 import { useHistory } from 'react-router';
 import RegisterPage from '../register Page/RegisterPage';
 
@@ -34,7 +34,7 @@ function LoginPage(props) {
     };
 
     const onFinish = (values) => {
-        dispatch(loginRequest(values))
+        dispatch(loginActionMDW(values))
     };
 
     if (success) {
@@ -47,7 +47,7 @@ function LoginPage(props) {
     };
     return (
 
-        <div>
+        <div className='login-form'>
             <Form
                 {...layout}
                 name="basic"
@@ -63,10 +63,11 @@ function LoginPage(props) {
 
                     <Form.Item
                         label="Tên đăng nhập"
+
                         name="username"
                         rules={[{ required: true, message: 'Please input your username!' }]}
                     >
-                        <Input />
+                        <Input placeholder='Tài khoản' />
                     </Form.Item>
 
                     <Form.Item
@@ -74,7 +75,7 @@ function LoginPage(props) {
                         name="password"
                         rules={[{ required: true, message: 'Please input your password!' }]}
                     >
-                        <Input.Password />
+                        <Input.Password placeholder='Mật khẩu'/>
                     </Form.Item>
 
                     <Form.Item {...tailLayout} name="remember" valuePropName="checked">
@@ -86,7 +87,7 @@ function LoginPage(props) {
                             Đăng nhập
                     </Button>
 
-                        <Button style={{ marginLeft: '2rem' }} onClick={showModal}>Đăng ký</Button >
+                        <Button type="primary" style={{ marginLeft: '2rem' }} onClick={showModal}>Đăng ký</Button >
                     </Form.Item>
             </Form>
 

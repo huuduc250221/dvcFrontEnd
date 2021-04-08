@@ -36,8 +36,10 @@ const fetchUserFailure = err => ({
 
 export const fetchUser = () => dispatch => {
     axios.post('/api/v1/auth/me')
-        .then(res => dispatch(fetchUserAction(res.data)))
-        .then(res => console.log(res))
+        .then(res =>{
+            dispatch(fetchUserAction(res.data))
+            localStorage.setItem('role',res.data.data.role)
+        } )
         .catch(err => dispatch(fetchUserFailure(err)))
 }
 export const updateUserAction = detail => dispatch => {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
-import './StaffMenu.css'
+import './TruongPhongUI.css'
 
+import { Link } from 'react-router-dom'
 import { Menu, Button } from 'antd';
 import {
   AppstoreOutlined,
@@ -12,11 +13,10 @@ import {
   ContainerOutlined,
   MailOutlined,
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
-function AdminMenu(props) {
+function TruongPhongMenu(props) {
 
   const [collapsedState, setCollapsedState] = useState(false)
 
@@ -41,24 +41,24 @@ function AdminMenu(props) {
           inlineCollapsed={collapsedState}
         >
           <Menu.Item key="1" icon={<PieChartOutlined />}>
-            <Link to='/staffHome'>
-              Tổng quan
-            </Link>
+            <Link to='/truongphongHome'>Tổng quan</Link>
           </Menu.Item>
           <Menu.Item key="2" icon={<DesktopOutlined />}>
-            <Link to='/staffHome/tiepnhanhoso'>Tiếp nhận hồ sơ</Link>
+            <Link to='/truongphongHome/phanchiacongviec'>Phân chia hồ sơ</Link>
+          </Menu.Item>
+          <Menu.Item key="3" icon={<DesktopOutlined />}>
+            <Link to='/truongphongHome/quanlynhanvien'>Quản lý nhân viên</Link>
           </Menu.Item>
 
-
-
-          <SubMenu key="sub1" icon={<MailOutlined />} title="Cá nhân">
-            <Menu.Item key="5"><Link to='/profilePage'>Thông tin cá nhân</Link></Menu.Item>
-            <Menu.Item key="5"><Link to='/profilePage'>Thông tin cá nhân</Link></Menu.Item>
-
+          <SubMenu key="sub3" icon={<AppstoreOutlined />} title="Cá nhân">
+            <Menu.Item key="13">
+              <Link to='/profilePage'>Thông tin của tôi</Link>
+            </Menu.Item>
+            <Menu.Item key="14">Đăng xuất</Menu.Item>
           </SubMenu>
         </Menu>
       </div>
-      <div className='admin-main-content' style={{ padding: '2rem' }}>
+      <div className='admin-main-content' style={{ padding:'2rem' }}>
         {props.children}
       </div >
     </div>
@@ -66,4 +66,4 @@ function AdminMenu(props) {
   );
 }
 
-export default AdminMenu;
+export default TruongPhongMenu;

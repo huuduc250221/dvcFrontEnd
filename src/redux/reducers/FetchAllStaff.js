@@ -24,7 +24,7 @@ const fetchAllStaffFailure = err => ({
 
 const fetchAllStaffActionMDW = param => dispatch => {
     dispatch(fetchAllStaffRequest()) 
-    let baseUrl = '/api/v1/auth/allstaff'
+    let baseUrl = '/api/v1/auth/staffs'
 
     axios.get(baseUrl)
         .then(res => dispatch(fetchAllStaffSuccess(res)))

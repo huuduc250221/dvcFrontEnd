@@ -16,6 +16,8 @@ import RootStaffRoute from './screens/RootStaffRoute'
 
 import ProtectedRoute from './components/protected route/ProtectedRoute'
 import RootManagerRoute from './screens/RootManagerRoute'
+import TruongPhongMenu from './components/UI/end user UI/TruongPhongUI'
+import RootTruongPhongRoute from './screens/RootTruongPhongRoute'
 
 
 
@@ -23,15 +25,25 @@ function App() {
   return (
     <Router >
       <Switch>
+
         <ProtectedRoute path='/staffHome'>
           <PageHeader />
-
           <StaffMenu >
             <RootStaffRoute />
           </StaffMenu>
           <PageFooter />
         </ProtectedRoute>
-        <ProtectedRoute path='/managerHome'>
+
+        <ProtectedRoute roles={['AdminUBND']} path='/truongphongHome'>
+          <PageHeader />
+          <TruongPhongMenu>
+            <RootTruongPhongRoute />
+          </TruongPhongMenu>
+          <PageFooter />
+        </ProtectedRoute>
+
+        <ProtectedRoute roles={['AdminUBND']} path='/managerHome'>
+          <PageHeader />
           <ManagerMenu >
             <RootManagerRoute />
           </ManagerMenu>
@@ -46,19 +58,13 @@ function App() {
                 <RootRouter />
               </Col>
             </Row>
-            <BackToTop />
           </main>
           <PageFooter />
 
         </Route>
 
-
-
       </Switch>
-
-
-
-
+      <BackToTop />
     </Router>
   );
 }

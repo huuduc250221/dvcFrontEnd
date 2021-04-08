@@ -1,27 +1,29 @@
 import axios from 'axios'
 
-import { LOGIN_REQUEST,LOGIN_FAILURE, LOGOUT_ACTION, LOGIN_AUTHENTICATED } from '../constant/Login.Action.Constant'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_ACTION, LOGIN_AUTHENTICATED } from '../constant/Login.Action.Constant'
 
 export const initialState = {
-    success:false
+    success: false
 }
 
-const loginActionRequest = (user) => {
+const loginSuccess = (user) => {
     return {
-        type: LOGIN_REQUEST,
+        type: LOGIN_SUCCESS,
         payload: user
     }
 }
 
+
+
 export const loginAuthenticated = {
-    type:LOGIN_AUTHENTICATED
+    type: LOGIN_AUTHENTICATED
 }
 
 
 const loginActionFailure = err => {
     return {
-        type:LOGIN_FAILURE,
-        payload:err
+        type: LOGIN_FAILURE,
+        payload: err
     }
 }
 
@@ -29,46 +31,57 @@ export const logOutAction = {
     type: LOGOUT_ACTION
 }
 
-export  const loginRequest = user => async dispatch => {
-    await axios.post('/api/v1/auth/login',user)
-            .then( res => dispatch(loginActionRequest(res.data)))
-            .then( res => console.log(res.payload.success))
-            .then(res => localStorage.setItem('isLogin',true))
-            .catch( err => dispatch(loginActionFailure(err.message)))
+export const loginActionMDW = user => dispatch => {
+    axios.post('/api/v1/auth/login', user)
+        .then(res => {
+            console.log(res.data)
+            dispatch(loginSuccess(res.data))
+            localStorage.setItem('isLogin', true)
+        })
+        // .then(res => {
+        //     localStorage.setItem('isLogin', true)
+        //     localStorage.setItem('role', res.data.data.role)
+        //     return
+        // })
+        .catch(err => dispatch(loginActionFailure(err.message)))
 }
 export const logoutActionMDW = () => dispatch => {
     axios.post('/api/v1/auth/logout')
         .then(res => dispatch(logOutAction))
-        .then(res => localStorage.removeItem('isLogin'  ))
-        .then(res => console.log(res))
+        .then(res => localStorage.removeItem('isLogin'))
+    // .then(res => console.log(res))
 }
 
- const loginReducer = (state = initialState,action) =>  {
+const loginReducer = (state = initialState, action) => {
 
-    switch(action.type) {
-        case LOGIN_REQUEST :
+    switch (action.type) {
+        case LOGIN_REQUEST:
             return {
-                success:action.payload.success,
-                data:action.payload.data
 
             }
-        case LOGIN_FAILURE :
+        case LOGIN_SUCCESS:
             return {
-                success:false,
+                success: action.payload.success,
+                data: action.payload.data
+
+            }
+        case LOGIN_FAILURE:
+            return {
+                success: false,
                 err: true
             }
 
-        case LOGIN_AUTHENTICATED :
+        case LOGIN_AUTHENTICATED:
             return {
-                success:true,
+                success: true,
                 err: false
             }
 
         case LOGOUT_ACTION:
             return {
-                success:false
+                success: false
             }
-        default : return state
+        default: return state
     }
 }
 

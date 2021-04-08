@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { Table } from 'antd'
-import { connect } from 'react-redux'
+import { Table, Form, Button, Select, Input } from 'antd'
+
+import { connect, useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../../redux/reducers/FetchDataReducer'
 
 
 const tableName = 'tracuuhoso'
 
-function LookUpFile({ data, onChangeFilter }) {
+function LookUpFile() {
+
+    const dispatch = useDispatch()
+    const data = useSelector(state => state.loadData)
+
     const [pageState, setPageState] = useState({
         tableName: tableName,
         params: '',
@@ -18,9 +23,9 @@ function LookUpFile({ data, onChangeFilter }) {
     })
 
     useEffect(() => {
-        onChangeFilter(pageState.tableName)
+        dispatch(fetchData(pageState.tableName))
         console.log('useEffects')
-    }, [onChangeFilter])
+    }, [pageState])
 
     const columns = [
         {
@@ -72,11 +77,36 @@ function LookUpFile({ data, onChangeFilter }) {
         code: item.code,
     })) : []
 
+    const onFinish = values => {
+        console.log(values)
+    }
+
     return <div>
+        <Form
+            labelCol={{
+                span: 4,
+            }}
+            wrapperCol={{
+                span: 14,
+            }}
+
+            layout="horizontal"
+            onFinish={onFinish}
+        >
+            <Form.Item name='recode_code'>
+                <Input placeholder='Mã thủ tục' />
+            </Form.Item>
+            <Form.Item >
+                <Button type="primary" htmlType="submit">
+                    Tìm kiếm
+                </Button>
+            </Form.Item>
+        </Form>
         <Table
+            loading={data.loading}
             columns={columns}
             dataSource={dataSource}
-            expandable={{ expandedRowRender:() =>   <ExpandeTable expandData={dataSource.slice(1,4)} /> }}
+            expandable={{ expandedRowRender: () => <ExpandeTable expandData={dataSource.slice(1, 4)} /> }}
         />
     </div>
 }
@@ -122,17 +152,9 @@ function ExpandeTable({ expandData }) {
     return <div> <Table
         columns={expandeColumns}
         dataSource={expandData}
-        pagination={{position:['none','none']}}
-        />
+        pagination={{ position: ['none', 'none'] }}
+    />
     </div>
 }
 
-const mapStateToProps = state => ({
-    data: state.loadData
-})
-
-const mapDispatchToProps = dispatch => ({
-    onChangeFilter: (arg) => dispatch(fetchData(arg))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(LookUpFile)
+export default LookUpFile

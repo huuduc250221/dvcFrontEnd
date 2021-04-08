@@ -38,7 +38,7 @@ const Avatars = () => {
                 <div>
                     <Link to='/profilePage'>
                         {
-                            fetchSuccess ? <Avatar src={profile.avatar} size={32} /> : <Avatar size={32} icon={<UserOutlined />} />
+                            fetchSuccess ? <Avatar size={32} icon={<UserOutlined />} />: <Avatar src={profile.avatar} size={32} />
                         }
                     </Link>
                 </div>
